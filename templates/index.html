@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome | My Flask Site</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f8f9fa;
+      color: #333;
+    }
+
+    nav {
+      background: #343a40;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1rem;
+    }
+
+    .hero {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #555;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #f1f1f1;
+      color: #777;
+      font-size: 0.9rem;
+      margin-top: 4rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div><strong>MySite</strong></div>
+    <div>
+      <a href="/">Home</a>
+      <a href="/login">Login</a>
+      <a href="/about">About</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <h1>Welcome to My Flask Site</h1>
+    <p>이곳은 Flask로 만든 간단한 웹 애플리케이션의 메인 페이지입니다.</p>
+  </div>
+
+  <footer>
+    &copy; 2025 MySite. All rights reserved.
+  </footer>
+
+</body>
+</html>
