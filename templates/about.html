@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Input Page{% endblock %}
+
+{% block content %}
+  <!-- 임시로 스타일 강제 적용 -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  
+  <div class="input-container">
+    <div class="input-box">
+      <h2>Enter Your Input</h2>
+      <form method="post">
+        <input type="text" name="user_input" placeholder="Type here..." required>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+{% endblock %}
