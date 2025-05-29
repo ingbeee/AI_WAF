@@ -1,0 +1,8 @@
+# Python bytecode cache
+__pycache__/
+
+# __pycache__ in subdirectories like routes/
+routes/__pycache__/
+
+# Python virtual environment
+venv/
