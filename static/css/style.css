@@ -87,3 +87,43 @@
 .input-box button:hover {
   background-color: #45a049;
 }
+
+#flash-message-container {
+  position: fixed;
+  top: 20px;
+  right: 30px;
+  z-index: 9999;
+}
+
+.flash-message {
+  background-color: #333;
+  color: white;
+  padding: 12px 36px 12px 20px;  /* ← 오른쪽 패딩 여유 주기 */
+  margin-top: 50px;
+  border-radius: 8px;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: fadein 0.3s ease;
+  position: relative;  /* ← close-btn 위치를 위한 기준 */
+}
+
+.close-btn {
+  position: absolute;
+  top: 8px;        /* 약간 아래로 */
+  right: 12px;     /* 패딩 여유 내에서 조정 */
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+
+.flash-message.success { background-color: #28a745; }
+.flash-message.error   { background-color: #dc3545; }
+.flash-message.info    { background-color: #17a2b8; }
+
+@keyframes fadein {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+

@@ -1,8 +1,12 @@
 from flask import Flask
 from routes import blueprints
+from flask import session
+from datetime import timedelta
+
 
 app = Flask(__name__)
 app.secret_key = 'super-secret-key-123' 
+app.permanent_session_lifetime = timedelta(hours=1)
 
 for bp in blueprints:
     app.register_blueprint(bp)

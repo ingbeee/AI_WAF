@@ -6,14 +6,44 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
+
   <nav>
     <div><strong>MySite</strong></div>
     <div>
-      <a href="/">Home</a> 
-      <a href="/login">Login</a>
+      <a href="/">Home</a>
       <a href="/about">About</a>
+      {% if session.get('username') %}
+        <a href="/logout">Logout ({{ session.get('username') }})</a>
+      {% else %}
+        <a href="/login">Login</a>
+      {% endif %}
     </div>
   </nav>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div id="flash-message-container">
+      {% for category, message in messages %}
+        <div class="flash-message {{ category }}">
+          {{ message }}
+          <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
+        </div>
+      {% endfor %}
+    </div>
+    <script>
+      // 3초 뒤 부드럽게 사라지기
+      setTimeout(() => {
+        const container = document.getElementById('flash-message-container');
+        if (container) {
+          container.style.transition = 'opacity 0.5s ease-out';
+          container.style.opacity = '0';
+          setTimeout(() => container.remove(), 500);  // 완전히 사라지면 DOM에서 제거
+        }
+      }, 3000);
+    </script>
+  {% endif %}
+{% endwith %}
+
 
   <div class="content">
     {% block content %}{% endblock %}
