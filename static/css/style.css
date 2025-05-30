@@ -60,23 +60,26 @@
   color: #333;
 }
 
-.input-box input[type="text"] {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
-}
-
+.input-box input[type="text"],
+.input-box input[type="password"],
 .input-box button {
   width: 100%;
   padding: 12px;
-  border: none;
   border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box; /* 핵심 ✅ */
+}
+
+.input-box input[type="text"],
+.input-box input[type="password"] {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+}
+
+.input-box button {
+  border: none;
   background-color: #4CAF50;
   color: white;
-  font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
