@@ -1,0 +1,29 @@
+{% extends '/admin/base.html' %}
+{% block title %}로그 기록{% endblock %}
+
+{% block content %}
+<div style="max-width: 900px; margin: 40px auto;">
+  <h2 style="text-align: center;">로그 기록</h2>
+
+  <table class="user-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Username</th>
+        <th>Action</th>
+        <th>Timestamp</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- {% for log in logs %}
+      <tr>
+        <td>{{ log.id }}</td>
+        <td>{{ log.username }}</td>
+        <td>{{ log.action }}</td>
+        <td>{{ log.timestamp }}</td>
+      </tr>
+      {% endfor %} -->
+    </tbody>
+  </table>
+</div>
+{% endblock %}

@@ -8,15 +8,16 @@
 
 </head>
 <body>
+  <div style="background-color: red; height: 10px;"></div>  <!-- 관리자 표시용 막대 -->
 
   <nav>
     <div><strong>MySite</strong></div>
     <div>
       <a href="/">Home</a>
       {% if is_admin %}
-        <a href="{{ url_for('admin.admin_user_list') }}">Admin Dashboard</a>
+        <a href="{{ url_for('admin.admin_user_list') }}">User list</a>
       {% endif %}
-      <a href="/about">About</a>
+      <a href="{{ url_for('admin.admin_logs') }}">log</a>
       {% if session.get('username') %}
         <a href="/logout">Logout ({{ session.get('username') }})</a>
       {% else %}

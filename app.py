@@ -11,6 +11,9 @@ app.permanent_session_lifetime = timedelta(hours=1)
 for bp in blueprints:
     app.register_blueprint(bp)
 
+@app.context_processor
+def inject_is_admin():
+    return dict(is_admin=(session.get('role') == 'admin'))
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=4000)

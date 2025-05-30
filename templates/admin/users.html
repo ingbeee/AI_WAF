@@ -1,0 +1,101 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}User List{% endblock %}
+
+{% block content %}
+<style>
+  /* 전체 가운데 정렬 컨테이너 */
+/* 불필요한 상단 여백 제거 */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 네비게이션 바 바로 아래에 들어가는 콘텐츠 여백만 따로 지정 */
+.content {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+
+/* 제목 */
+h2 {
+  text-align: center;
+  color: #343a40;
+  margin-bottom: 30px;
+}
+
+/* 테이블 전체 */
+table {
+  width: 80%;
+  margin: 0 auto;
+  border-collapse: collapse;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* 테이블 헤더 */
+table thead {
+  background-color: #007bff;
+  color: white;
+}
+
+table th, table td {
+  padding: 14px 16px;
+  text-align: center;
+  border-bottom: 1px solid #dee2e6;
+}
+
+/* 짝수 행 배경 */
+table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* 마우스 오버 효과 */
+table tbody tr:hover {
+  background-color: #e9f5ff;
+}
+
+/* 테이블 하단 마지막 행 보더 제거 */
+table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+</style>
+
+<h2>사용자 목록</h2>
+
+<table border="1" cellpadding="8" cellspacing="0">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>Role</th>
+      <th>Created At</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+    <tr>
+      <td>{{ user.id }}</td>
+      <td>{{ user.username }}</td>
+      <td>
+      <form action="{{ url_for('admin.update_role', user_id=user.id) }}" method="post" style="display: inline;">
+        <select name="role" onchange="this.form.submit()" style="padding: 4px;">
+          <option value="user" {% if user.role == 'user' %}selected{% endif %}>user</option>
+          <option value="admin" {% if user.role == 'admin' %}selected{% endif %}>admin</option>
+        </select>
+      </form>
+    </td>
+
+      <td>{{ user.created_at }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

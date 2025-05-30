@@ -14,13 +14,16 @@ def login_page():
 
         conn = mysql.connector.connect(**db_config)
         cursor = conn.cursor()
-        cursor.execute("SELECT password FROM users WHERE username = %s", (username,))
+        cursor.execute("SELECT password, role FROM users WHERE username = %s", (username,))
         result = cursor.fetchone()
+
         cursor.close()
         conn.close()
 
         if result and check_password_hash(result[0], password):
             session['username'] = username
+            session['role'] = result[1]  # ✅ role 저장
+            session.permanent = False
             flash("로그인 성공!", "success")
             return redirect(url_for('main.home'))
         else:
@@ -31,5 +34,6 @@ def login_page():
 @login.route('/logout')
 def logout():
     session.pop('username', None)
+    session.pop('role', None)
     flash('로그아웃 되었습니다.', 'info')
     return redirect(url_for('main.home'))
