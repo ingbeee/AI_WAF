@@ -1,3 +1,7 @@
-from flask import Blueprint
+# routes/__init__.py
 
-main = Blueprint('main', __name__)
+from .main import main
+from .about import about
+from .login import login
+
+blueprints = [main, about, login]
