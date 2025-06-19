@@ -1,29 +1,113 @@
-{% extends '/admin/base.html' %}
-{% block title %}로그 기록{% endblock %}
+{% extends 'admin/base.html' %}
+
+{% block title %}Logs{% endblock %}
 
 {% block content %}
-<div style="max-width: 900px; margin: 40px auto;">
-  <h2 style="text-align: center;">로그 기록</h2>
+<style>
+  /* 전체 가운데 정렬 컨테이너 */
+/* 불필요한 상단 여백 제거 */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-  <table class="user-table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Username</th>
-        <th>Action</th>
-        <th>Timestamp</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- {% for log in logs %}
-      <tr>
-        <td>{{ log.id }}</td>
-        <td>{{ log.username }}</td>
-        <td>{{ log.action }}</td>
-        <td>{{ log.timestamp }}</td>
-      </tr>
-      {% endfor %} -->
-    </tbody>
-  </table>
-</div>
+/* 네비게이션 바 바로 아래에 들어가는 콘텐츠 여백만 따로 지정 */
+.content {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+
+
+/* 제목 */
+h2 {
+  text-align: center;
+  color: #343a40;
+  margin-bottom: 30px;
+}
+
+/* 테이블 전체 */
+table {
+  width: 100%;
+  max-width: 1200px;  
+  margin: 0 auto;
+  border-collapse: collapse;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* 테이블 헤더 */
+table thead {
+  background-color: #007bff;
+  color: white;
+}
+
+table th, table td {
+  padding: 14px 16px;
+  text-align: center;
+  border-bottom: 1px solid #dee2e6;
+}
+
+/* 짝수 행 배경 */
+table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* 마우스 오버 효과 */
+table tbody tr:hover {
+  background-color: #e9f5ff;
+}
+
+/* 테이블 하단 마지막 행 보더 제거 */
+table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+table td:nth-child(4) {
+  text-align: left;
+  word-break: break-all;
+  white-space: nowrap;     /* ← 요거만 바꾸면 됨 */
+  min-width: 300px;
+  max-width: 1200px;
+  overflow: hidden;
+  /* text-overflow: ellipsis; 너무 길면 ... 표시됨 (선택사항) */
+}
+
+table th, table td {
+  padding: 18px 30px;  /* ← 여기를 늘려주면 셀 간 간격 커짐 */
+  text-align: center;
+  border-bottom: 1px solid #dee2e6;
+}
+
+</style>
+<h2>로그 기록</h2>
+<table border="1" cellpadding="8" cellspacing="0">
+<table class="log-table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Timestamp</th>
+      <th>IP Address</th>
+      <th>Payload</th>
+      <th>Label</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for log in logs %}
+    <tr>
+      <td>{{ log.idx }}</td>
+      <td>{{ log.timestamp }}</td>
+      <td>{{ log.ip }}</td>
+      <td>{{ log.payload }}</td>
+      <td>{{ log.label }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</table>
 {% endblock %}
