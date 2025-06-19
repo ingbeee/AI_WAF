@@ -11,18 +11,20 @@
 
   <nav>
     <div><strong>SW</strong></div>
-    <div>
-      <a href="/">Home</a>
-      {% if is_admin %}
-        <a href="{{ url_for('admin.admin_user_list') }}">Admin Dashboard</a>
-      {% endif %}
-      <a href="/about">About</a>
-      {% if session.get('username') %}
-        <a href="/logout">Logout ({{ session.get('username') }})</a>
-      {% else %}
-        <a href="/login">Login</a>
-      {% endif %}
-    </div>
+  <div>
+    <a href="/">Home</a>
+    {% if is_admin %}
+      <a href="{{ url_for('admin.admin_user_list') }}">Admin Dashboard</a>
+    {% endif %}
+    <a href="/about">About</a>
+    <a href="/user/find">Find</a>
+    {% if session.get('username') %}
+      <a href="/logout">Logout ({{ session.get('username') }})</a>
+    {% else %}
+      <a href="/login">Login</a>
+    {% endif %}
+  </div>
+
   </nav>
 
 {% with messages = get_flashed_messages(with_categories=true) %}

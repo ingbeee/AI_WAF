@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}User Search{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<div class="input-container">
+  <div class="input-box">
+    <h2>Enter username</h2>
+    <form method="get">
+      <input type="text" name="user_input" placeholder="Type here..." value="{{ request.args.get('user_input', '') }}" required>
+      <button type="submit">Find</button>
+    </form>
+  </div>
+</div>
+
+{% if users is defined %}
+  <div style="margin-top: 40px; text-align: center;">
+    {% if users %}
+      <h3>검색 결과</h3>
+      <table style="margin: 0 auto; border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th style="padding: 8px; border: 1px solid #ccc;">ID</th>
+            <th style="padding: 8px; border: 1px solid #ccc;">Username</th>
+            <th style="padding: 8px; border: 1px solid #ccc;">Created At</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+            <tr>
+              <td style="padding: 8px; border: 1px solid #ccc;">{{ user.id }}</td>
+              <td style="padding: 8px; border: 1px solid #ccc;">{{ user.username }}</td>
+              <td style="padding: 8px; border: 1px solid #ccc;">{{ user.created_at }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p style="color: gray;">검색 결과가 없습니다.</p>
+    {% endif %}
+  </div>
+{% endif %}
+{% endblock %}
