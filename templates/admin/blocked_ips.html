@@ -1,0 +1,94 @@
+{% extends 'admin/base.html' %}
+{% block title %}Blocked IPs{% endblock %}
+
+{% block content %}
+<style>
+  body {
+    background-color: #f4f6f8;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+  }
+
+  .table-wrapper {
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  thead {
+    background-color: #3498db;
+    color: white;
+  }
+
+  th, td {
+    padding: 16px 24px;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: #f9fbfd;
+  }
+
+  tbody tr:hover {
+    background-color: #ecf5fc;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  .unblock-btn {
+    padding: 6px 12px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+</style>
+<br><br><br>
+<h2>차단된 IP 목록</h2>
+
+<div class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>IP</th>
+        <th>차단 시간</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ip in blocked_ips %}
+      <tr>
+        <td>{{ ip.id }}</td>
+        <td>{{ ip.ip }}</td>
+        <td>{{ ip.blocked_at }}</td>
+        <td>
+          <form method="post" action="{{ url_for('admin.unblock_ip', ip_id=ip.id) }}" style="display:inline;">
+            <button type="submit" class="unblock-btn">Unblock</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

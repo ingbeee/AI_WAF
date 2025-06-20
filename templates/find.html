@@ -9,7 +9,7 @@
   <div class="input-box">
     <h2>Enter username</h2>
     <form method="get">
-      <input type="text" name="user_input" placeholder="Type here..." value="{{ request.args.get('user_input', '') }}" required>
+      <input type="text" name="user_query" placeholder="Type here..." value="{{ request.args.get('user_query', '') }}" required>
       <button type="submit">Find</button>
     </form>
   </div>

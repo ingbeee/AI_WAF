@@ -19,7 +19,7 @@ def find_user():
         flash("로그인이 필요한 서비스입니다.", "error")
         return redirect(url_for('main.home'))
 
-    raw_input = request.args.get('user_input', '')
+    raw_input = request.args.get('user_query', '')
     filtered_input = simple_filter(raw_input)
     users = []
 

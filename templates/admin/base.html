@@ -16,6 +16,7 @@
         <a href="{{ url_for('admin.admin_user_list') }}">User list</a>
       {% endif %}
       <a href="{{ url_for('admin.admin_logs') }}">log</a>
+      <a href="{{ url_for('admin.blocked_ip_list') }}">Blocked IPs</a>
       {% if session.get('username') %}
         <a href="/logout">Logout ({{ session.get('username') }})</a>
       {% else %}
